@@ -56,7 +56,7 @@ if __name__ == "__main__":
     DATA_DIR = r"raw_data\angela_included"
     for file_path in tqdm(os.listdir(DATA_DIR)):
         results = process_single_conversations(os.path.join(DATA_DIR, file_path))
-        all_results.append(results)
+        all_results.extend(results)
 
     with open("dataset/angela_single.json", "w", encoding="utf-8") as f:
         json.dump(all_results, f, indent=2, ensure_ascii=False)
