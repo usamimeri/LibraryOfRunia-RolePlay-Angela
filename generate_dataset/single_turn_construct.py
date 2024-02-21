@@ -29,19 +29,20 @@ def process_single_conversations(csv_path) -> list:
                     index == (len(conversations) - 1)
                     or conversations["Character Name"][index + 1] != "安吉拉"
                 ):
-                    results.append(
-                        {
-                            "conversation": [
-                                {
-                                    "system": SYSTEM_PROMPT,
-                                    "input": "\n".join(current_dialogues),
-                                    "output": "".join(
-                                        angela_dialogues
-                                    ),  # 将安吉拉的连续对话作为一个输出
-                                }
-                            ]
-                        }
-                    )
+                    if len(current_dialogues)<=20:
+                        results.append(
+                            {
+                                "conversation": [
+                                    {
+                                        "system": SYSTEM_PROMPT,
+                                        "input": "\n".join(current_dialogues),
+                                        "output": "".join(
+                                            angela_dialogues
+                                        ),  # 将安吉拉的连续对话作为一个输出
+                                    }
+                                ]
+                            }
+                        )
                     current_dialogues.clear()
                     angela_dialogues.clear()
             else:
