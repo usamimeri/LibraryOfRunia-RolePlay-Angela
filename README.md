@@ -16,8 +16,10 @@
 [用于收集数据的Wiki](https://library-of-ruina.fandom.com/zh/wiki/%E5%89%A7%E6%83%85)
 
 - [x] 爬取所有对话数据并保存为统一格式 
+- [x] 对爬取的数据进行清晰，例如替换？？？中的名字，过滤仅含安吉拉的对话
 - [ ] 构建符合微调数据集格式的对话（暂时单轮对话）
 - [ ] （可选）收集wiki各种背景描述，用于增量微调或者RAG
+
 
 ## 模型准备
 - [ ] 下载InternLM2 1.8B、7B模型
@@ -36,9 +38,50 @@
 - 赋予安吉拉Agent能力
 - 对话时进行RAG（很多背景描述都在旁白中）
 
+## 微调语料构建方案
+### 方案一：纯单轮对话
+- 目前使用较简单的单轮拆分，即寻找安吉拉两次对话之间的内容，拼接为一个大Input。但若是安吉拉第一次出现，则将前面n条语料拼接
+例如：
+```
+Chesed,不论如何咖啡才是最好的~
+Binah,真是遗憾。你的舌头或许已经被那些刺激性的浓郁香气弄得麻木了。
+安吉拉,我已经搞不懂这里究竟是图书馆还是咖啡厅了。
+Hod,啊，是安吉拉。你来这里是有什么事吗？
+安吉拉,……不过只是因为有闲暇时间所以在这馆内四处走走而已。
+```
+拼接为：
+```json
+[{
+    "conversation":[
+        {
+            "system": "xxx",
+            "input": "Chesed:不论如何咖啡才是最好的~\nBinah:真是遗憾。你的舌头或许已经被那些刺激性的浓郁香气弄得麻木了。\n",
+            "output": "我已经搞不懂这里究竟是图书馆还是咖啡厅了"
+        }
+    ]
+},
+{
+    "conversation":[
+        {
+            "system": "xxx",
+            "input": "Hod:啊，是安吉拉。你来这里是有什么事吗\n",
+            "output": "……不过只是因为有闲暇时间所以在这馆内四处走走而已。"
+        }
+    ]
+}]
+```
+**优点**：
+- 很方便程序化
+
+**缺点**：
+- 无法形成语境进行多轮对话
+- 一些对话截断导致信息量低
+- 容易出现前后不一致
+
 ### 参考资料
 
 1. [安吉拉wiki](https://libraryofruina.huijiwiki.com/wiki/%E5%AE%89%E5%90%89%E6%8B%89)
 2. [凉宫春日计划](https://github.com/LC1332/Chat-Haruhi-Suzumiya)
 3. [赫萝微调数据集](https://huggingface.co/datasets/while-nalu/horo2ds/tree/main)
+4. [xtuner数据集格式](https://github.com/InternLM/xtuner/blob/main/docs/zh_cn/user_guides/dataset_format.md)
 
