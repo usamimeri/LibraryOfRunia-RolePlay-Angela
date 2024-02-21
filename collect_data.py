@@ -1,3 +1,7 @@
+"""
+从废墟图书馆中文Wiki爬取所有情景对话
+"""
+
 from lxml import etree
 import requests
 import pandas as pd
@@ -54,7 +58,7 @@ def extract_dialogues(url):
 
 
 if __name__ == "__main__":
-    SAVE_DIR = "data"
+    SAVE_DIR = "raw_data"
     urls_df = get_all_urls()
     os.makedirs(SAVE_DIR, exist_ok=True)
     for index, (scene_name, url) in tqdm(urls_df.iterrows(), total=len(urls_df)):
