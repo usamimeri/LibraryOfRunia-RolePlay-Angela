@@ -29,7 +29,7 @@ use_varlen_attn = False
 # Data
 data_path = "./dataset/angela_single.json"
 # https://github.com/InternLM/xtuner/blob/main/docs/zh_cn/user_guides/prompt_template.md
-prompt_template = PROMPT_TEMPLATE.default
+prompt_template = PROMPT_TEMPLATE.internlm2_chat
 max_length = 512
 pack_to_max_length = True
 
