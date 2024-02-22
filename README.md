@@ -16,6 +16,10 @@
 - [2024-2-22] 构造了 1066 条单轮数据（尚未精修）
 - [2024-2-22] 使用 xtuner,QLoRA 微调 InternLM-7B 模型
 
+## 效果展示
+### InternLM-7B QLoRA微调
+![alt text](images/test_case1.png)
+
 # 项目计划
 
 ### 收集数据
