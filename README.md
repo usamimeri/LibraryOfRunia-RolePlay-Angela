@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-  <img src="images\Angela.jpg" width="50%">
+  <img src="images\Angela.jpg" width="100%">
 </p>
 
 <h3 align="center">"正于此地，愿您找到想要的书"<h3>
