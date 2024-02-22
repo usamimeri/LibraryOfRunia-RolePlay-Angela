@@ -2,7 +2,7 @@
   <img src="images\Angela.jpg" width="100%">
 </p>
 
-<h3 align="center">"正于此地，愿您找到想要的书"<h3>
+<h2 align="center">"正于此地，愿您找到想要的书"<h3>
 
 # Angela：使用大模型进行角色扮演——安吉拉（废墟图书馆）
 
@@ -106,7 +106,7 @@ Hod,啊，是安吉拉。你来这里是有什么事吗？
 - 容易出现前后不一致
 - 一些自我认知资料不足
 
-#### 参考资料
+### 参考资料
 
 1. [安吉拉 wiki](https://libraryofruina.huijiwiki.com/wiki/%E5%AE%89%E5%90%89%E6%8B%89)
 2. [凉宫春日计划](https://github.com/LC1332/Chat-Haruhi-Suzumiya)
