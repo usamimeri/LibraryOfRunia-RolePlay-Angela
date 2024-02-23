@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-  <img src="images\Angela.jpg" width="100%">
+  <img src="https://github.com/usamimeri/Angela/blob/main/images/Angela.jpg" width="100%">
 </p>
 
 <h2 align="center">"正于此地，愿您找到想要的书"<h3>
@@ -21,9 +21,9 @@
 
 ## 效果展示
 ### InternLM-7B QLoRA微调
-![alt text](images/test_case1.png)
+![alt text](https://github.com/usamimeri/Angela/blob/main/images/test_case1.png)
 ### InternLM2-7B QLoRA微调
-![alt text](images/test_case2.png)
+![alt text](https://github.com/usamimeri/Angela/blob/main/images/test_case2.png)
 
 # 项目计划
 
