@@ -24,9 +24,12 @@
 
 ### InternLM2-7B QLoRA微调
 
-<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case1.png" width="70%">
+<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case1.png" width="60%">
 
-<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case2.png" width="70%">
+<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case2.png" width="60%">
+
+> 请注意由于没有进行对齐和角色本身原因，安吉拉可能会有不友好的一面
+<img src="https://github.com/usamimeri/Angela/blob/main/images/bad_case.png" width="60%">
 
 # 📌项目计划
 
