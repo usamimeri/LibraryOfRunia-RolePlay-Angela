@@ -11,7 +11,7 @@ from transformers.utils import logging
 from transformers import AutoTokenizer, AutoModelForCausalLM  # isort: skip
 import random  # Import the random module
 
-MODEL_DIR='./internlm2-chat-7b'
+MODEL_DIR='./InternLM2Angela-7B'
 
 logger = logging.get_logger(__name__)
 user_prompt = '<|im_start|>user\n{user}<|im_end|>\n'

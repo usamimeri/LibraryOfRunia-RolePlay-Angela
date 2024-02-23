@@ -27,17 +27,16 @@ pretrained_model_name_or_path = './internlm2-chat-7b'
 use_varlen_attn = False
 
 # Data
-data_path = "./dataset/angela_single.json"
-# https://github.com/InternLM/xtuner/blob/main/docs/zh_cn/user_guides/prompt_template.md
+data_path = 'dataset/angela_single.json'
 prompt_template = PROMPT_TEMPLATE.internlm2_chat
-max_length = 512
+max_length = 2048
 pack_to_max_length = True
 
 # Scheduler & Optimizer
 batch_size = 2  # per_device
 accumulative_counts = 16
 dataloader_num_workers = 0
-max_epochs = 10
+max_epochs = 20
 optim_type = AdamW
 lr = 2e-4
 betas = (0.9, 0.999)
@@ -46,17 +45,14 @@ max_norm = 1  # grad clip
 warmup_ratio = 0.03
 
 # Save
-save_steps = 300
-save_total_limit = 5  # Maximum checkpoints to keep (-1 means unlimited)
+save_steps = 200
+save_total_limit = 2  # Maximum checkpoints to keep (-1 means unlimited)
 
 # Evaluate the generation performance during the training
 evaluation_freq = 100
 SYSTEM = ''
 evaluation_inputs = [
-    "你是谁","介绍一下你自己吧",
-    "你对都市有什么看法","你的目标是什么",
-    "为什么想成为人类","Ayin对你而言是何种存在",
-    "痛苦来自何方","你不担心图书馆被首脑摧毁吗"
+    '你是谁','你怎么看待都市','痛苦来自何方','你对Ayin怎么看'
 ]
 
 #######################################################################

@@ -10,50 +10,53 @@
 
 安吉拉Wiki：https://libraryofruina.huijiwiki.com/wiki/%E5%AE%89%E5%90%89%E6%8B%89
 
-本项目旨在用大语言模型微调技术实现安吉拉的人格复刻
+**本项目旨在用大语言模型微调技术实现安吉拉的人格复刻**
 
 ## News
 
 - [2024-2-21] 爬取并格式化了共 133 个场景对话
 - [2024-2-22] 构造了 1005 条单轮数据（尚未精修）
 - [2024-2-22] 使用 xtuner,QLoRA 微调 InternLM-7B 模型
-- [2024-2-22] 使用 xtuner，QLoRA微调了 InternLM2-7B模型
+- [2024-2-23] 使用 xtuner，QLoRA微调了 InternLM2-7B模型
 
 ## 效果展示
 ### InternLM-7B QLoRA微调
 ![alt text](images/test_case1.png)
+### InternLM2-7B QLoRA微调
+![alt text](images/test_case2.png)
 
 # 项目计划
 
-### 收集数据
+#### 收集数据
 
 [用于收集数据的 Wiki](https://library-of-ruina.fandom.com/zh/wiki/%E5%89%A7%E6%83%85)
 
 - [x] 爬取所有对话数据并保存为统一格式
 - [x] 对爬取的数据进行清晰，例如替换？？？中的名字，过滤仅含安吉拉的对话
 - [x] 构建符合微调数据集格式的对话（暂时单轮对话）
-- [ ] 精修对话集，添加一些如“你是谁”这样的认知问答
+- [x] 精修对话集，添加一些如“你是谁”这样的认知问答
 - [ ] （可选）收集 wiki 各种背景描述，用于增量微调或者 RAG
 
-### 模型准备
+#### 模型准备
 
 - [x] 下载 InternLM2 1.8B、7B 模型
 - [x] 跑通一个 demo，测试微调前可用
 
-### 模型微调
+#### 模型微调
 
 - [x] 对InternLM-7B,InternLM2-7B模型进行指令微调
 - [ ] 对Qwen系列进行微调
 
-### 模型部署
+#### 模型部署
+- [ ] 将模型权重上传HuggingFace
+- [ ] 将模型权重上传OpenXLab并部署为应用
 
-### 模型量化
-
-### 进阶计划
+#### 进阶计划
 
 - 使用安吉拉韩语配音，利用 VITS 转换中文
-- 赋予安吉拉 Agent 能力
 - 对话时进行 RAG（很多背景描述都在旁白中）
+
+---
 
 ### 微调语料构建方案
 
