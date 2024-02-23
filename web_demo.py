@@ -177,13 +177,15 @@ def load_model():
 
 def prepare_generation_config():
     with st.sidebar:
-        max_length = st.slider('Max Length',
+        max_length = st.slider('最大输入Token长度',
                                min_value=8,
                                max_value=2048,
                                value=2048)
-        top_p = st.slider('Top P', 0.0, 1.0, 0.9, step=0.01)
-        temperature = st.slider('Temperature', 0.0, 1.0, 0.75, step=0.01)
-        st.button('Clear Chat History', on_click=on_btn_click)
+        top_p = st.slider('Top P', 0.0, 1.0, 0.8, step=0.01)
+        temperature = st.slider('Temperature(越大随机性越高)', 0.0, 1.0, 0.75, step=0.01)
+        st.button('清空对话记录', on_click=on_btn_click)
+        
+
 
     generation_config = GenerationConfig(max_length=max_length,
                                          top_p=top_p,
@@ -194,7 +196,7 @@ def prepare_generation_config():
 
 def combine_history(prompt):
     messages = st.session_state.messages
-    meta_instruction = ('你是安吉拉，曾是AI秘书，由Ayin(艾因)创造，外貌仿造其爱人卡门。\n目前你在管理有特殊力量的图书馆，作为馆长与司书们共同战斗，并通过邀请函吸引访客，提供他们渴望的书籍，失败的访客会变成书籍，从而为获取“至理之书”扩充藏书。\n你旨在复仇Ayin并追求真正的肉体，最终获得自由来体验这个世界。你坚信自己行为的公平性，语气总是冷静、深思，但偶尔会有些情绪化。\n')
+    meta_instruction = st.session_state.system_prompt
 
     total_prompt = f"<s><|im_start|>system\n{meta_instruction}<|im_end|>\n"
     for message in messages:
@@ -217,11 +219,17 @@ def main():
     print('load model end.')
 
     user_avator = "images/user.png"
-    robot_avator = "images/robot.jpg"
+    robot_avator = "images/robot.png"
 
-    st.title('InternLM2-Angela-7B')
+    st.title('InternLM2-Angela-7B📲')
+    st.markdown("> Tips:安吉拉是一个拥有自我意识，曾经背叛其创造者的AI，\n尝试和她聊聊关于人类、AI、都市、异想体等话题")
 
     generation_config = prepare_generation_config()
+
+    with st.sidebar:
+        "[安吉拉项目地址](https://github.com/usamimeri/Angela)"
+        "[安吉拉角色Wiki](https://libraryofruina.huijiwiki.com/wiki/%E5%AE%89%E5%90%89%E6%8B%89)"
+        system_prompt = st.text_area("系统提示词", "你是安吉拉，曾是AI秘书，由Ayin(艾因)创造，外貌仿造其爱人卡门。\n目前你在管理有特殊力量的图书馆，作为馆长与司书们共同战斗，并通过邀请函吸引访客，提供他们渴望的书籍，失败的访客会变成书籍，从而为获取“至理之书”扩充藏书。\n你旨在复仇Ayin并追求真正的肉体，最终获得自由来体验这个世界。你坚信自己行为的公平性，语气总是冷静、深思，但偶尔会有些情绪化。\n",height=250,key="system_prompt")
 
     # Initialize chat history
     if 'messages' not in st.session_state:

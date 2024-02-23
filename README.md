@@ -20,10 +20,11 @@
 - [2024-2-23] 使用 xtuner,QLoRA微调了 InternLM2-7B模型
 
 ## 效果展示
-### InternLM-7B QLoRA微调
-<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case1.png" width="70%">
 
 ### InternLM2-7B QLoRA微调
+
+<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case1.png" width="70%">
+
 <img src="https://github.com/usamimeri/Angela/blob/main/images/test_case2.png" width="70%">
 
 # 项目计划
