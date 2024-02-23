@@ -17,13 +17,14 @@
 - [2024-2-21] 爬取并格式化了共 133 个场景对话
 - [2024-2-22] 构造了 1005 条单轮数据（尚未精修）
 - [2024-2-22] 使用 xtuner,QLoRA 微调 InternLM-7B 模型
-- [2024-2-23] 使用 xtuner，QLoRA微调了 InternLM2-7B模型
+- [2024-2-23] 使用 xtuner,QLoRA微调了 InternLM2-7B模型
 
 ## 效果展示
 ### InternLM-7B QLoRA微调
-![alt text](https://github.com/usamimeri/Angela/blob/main/images/test_case1.png)
+<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case1.png" width="70%">
+
 ### InternLM2-7B QLoRA微调
-![alt text](https://github.com/usamimeri/Angela/blob/main/images/test_case2.png)
+<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case2.png" width="70%">
 
 # 项目计划
 
