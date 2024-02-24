@@ -57,9 +57,14 @@ print(response)
 
 ## 📌项目计划
 
-- [ ] 对Qwen1.5系列进行微调
-- [ ] 将模型权重上传HuggingFace并提供推理API
+- [x] 爬取133个场景共993段对话数据集
+- [x] QLoRA 微调InternLM-7B、InternLM2-7B模型
 - [ ] OpenXLab部署为应用
+- [ ] 将模型权重上传HuggingFace并提供推理API
+- [ ] 对Qwen1.5系列进行微调
+
+### 进阶计划
+
 - [ ] 使用安吉拉韩语配音训练并转换中文
 - [ ] 对话时进行 RAG（很多背景描述都在旁白中）
 
