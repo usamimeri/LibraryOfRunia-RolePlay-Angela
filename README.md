@@ -13,57 +13,55 @@
 **本项目旨在用大语言模型微调技术实现安吉拉的人格复刻**
 
 **🌠模型权重已上传OpenXLab🌠**：https://openxlab.org.cn/models/detail/usamimeri/InternLM2_Angela_7B
+
 **🌠模型权重已上传ModelScope🌠**:https://www.modelscope.cn/models/usamimeri/InternLM2_Angela_7B
 
 
 ## News
-- [2024-2-21] 爬取并格式化了共 133 个场景对话
-- [2024-2-22] 构造了 1005 条单轮数据（尚未精修）
-- [2024-2-23] 使用 xtuner,QLoRA微调了 InternLM2-7B模型
-- [2024-2-23] 模型权重上传OpenXLab、ModelScope
+- [2024-2-23] 使用 xtuner,QLoRA微调了InternLM2-7B模型,模型权重上传OpenXLab、ModelScope
+
+## 快速开始
+
+```python
+from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig
+from modelscope import snapshot_download
+import torch
+
+model_name_or_path = snapshot_download("usamimeri/InternLM2_Angela_7B")
+
+tokenizer = AutoTokenizer.from_pretrained(model_name_or_path, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(model_name_or_path, trust_remote_code=True, torch_dtype=torch.bfloat16).cuda()
+model.eval()  
+
+system_prompt='''你是安吉拉，曾是AI秘书，由Ayin(艾因)创造，外貌仿造其爱人卡门。
+\n目前你在管理有特殊力量的图书馆，作为馆长与司书们共同战斗，并通过邀请函吸引访客，
+提供他们渴望的书籍，失败的访客会变成书籍，从而为获取“至理之书”扩充藏书。
+\n你旨在复仇Ayin并追求真正的肉体，最终获得自由来体验这个世界。
+你坚信自己行为的公平性，语气总是冷静、深思，但偶尔会有些情绪化。\n'''
+
+response, history = model.chat(tokenizer, '你好', meta_instruction=system_prompt, history=[])
+print(response)
+```
 
 ## 🪄效果展示
 > 更多对话示例见results文件夹
 
-### InternLM2-7B QLoRA微调
+<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case1.png" width="70%">
 
-<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case1.png" width="60%">
+<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case2.png" width="70%">
 
-<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case2.png" width="60%">
+<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case3.png" width="70%">
 
 > 请注意由于没有进行对齐和角色本身原因，安吉拉可能会有不友好的一面
-<img src="https://github.com/usamimeri/Angela/blob/main/images/bad_case.png" width="40%">
+<img src="https://github.com/usamimeri/Angela/blob/main/images/bad_case.png" width="50%">
 
-# 📌项目计划
+## 📌项目计划
 
-#### 收集数据
-
-[用于收集数据的 Wiki](https://library-of-ruina.fandom.com/zh/wiki/%E5%89%A7%E6%83%85)
-
-- [x] 爬取所有对话数据并保存为统一格式
-- [x] 对爬取的数据进行清晰，例如替换？？？中的名字，过滤仅含安吉拉的对话
-- [x] 构建符合微调数据集格式的对话（暂时单轮对话）
-- [x] 精修对话集，添加一些如“你是谁”这样的认知问答
-- [ ] （可选）收集 wiki 各种背景描述，用于增量微调或者 RAG
-
-#### 模型准备
-
-- [x] 下载 InternLM2 1.8B、7B 模型
-- [x] 跑通一个 demo，测试微调前可用
-
-#### 模型微调
-
-- [x] 对InternLM-7B,InternLM2-7B模型进行指令微调
-- [ ] 对Qwen系列进行微调
-
-#### 模型部署
-- [ ] 将模型权重上传HuggingFace
-- [ ] 将模型权重上传OpenXLab并部署为应用
-
-#### 进阶计划
-
-- 使用安吉拉韩语配音，利用 VITS 转换中文
-- 对话时进行 RAG（很多背景描述都在旁白中）
+- [ ] 对Qwen1.5系列进行微调
+- [ ] 将模型权重上传HuggingFace并提供推理API
+- [ ] OpenXLab部署为应用
+- [ ] 使用安吉拉韩语配音训练并转换中文
+- [ ] 对话时进行 RAG（很多背景描述都在旁白中）
 
 ---
 
@@ -124,6 +122,7 @@ Hod,啊，是安吉拉。你来这里是有什么事吗？
 2. [凉宫春日计划](https://github.com/LC1332/Chat-Haruhi-Suzumiya)
 3. [赫萝微调数据集](https://huggingface.co/datasets/while-nalu/horo2ds/tree/main)
 4. [xtuner 数据集格式](https://github.com/InternLM/xtuner/blob/main/docs/zh_cn/user_guides/dataset_format.md)
+5. [用于收集数据的 Wiki](https://library-of-ruina.fandom.com/zh/wiki/%E5%89%A7%E6%83%85)
 
 ### 特别鸣谢
 - 上海人工智能实验室提供的算力平台
