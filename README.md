@@ -44,7 +44,6 @@ print(response)
 ```
 
 ## 🪄效果展示
-> 更多对话示例见results文件夹
 
 <img src="https://github.com/usamimeri/Angela/blob/main/images/test_case1.png" width="70%">
 

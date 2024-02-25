@@ -58,7 +58,7 @@ def extract_dialogues(url):
 
 
 if __name__ == "__main__":
-    SAVE_DIR = "raw_data"
+    SAVE_DIR = "dataset/raw_data"
     urls_df = get_all_urls()
     os.makedirs(SAVE_DIR, exist_ok=True)
     for index, (scene_name, url) in tqdm(urls_df.iterrows(), total=len(urls_df)):
