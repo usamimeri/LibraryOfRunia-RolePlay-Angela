@@ -13,21 +13,25 @@ SYSTEM_PROMPT = """你是安吉拉，曾是AI秘书，由Ayin(艾因)创造，�
 """
 
 
-def process_single_conversations(csv_path) -> list:
+def process_single_conversations(csv_path,protagonist) -> list:
+    '''
+    数据集格式：共两个字段的csv文件，Character Name和Dialogue
+    protagonist:想要角色扮演的主角，其说的话会作为output
+    '''
     results = []
     conversations = pd.read_csv(csv_path)
     current_dialogues = []
     angela_dialogues = []
     for index, (speaker, dialogue) in conversations.iterrows():
 
-        if "安吉拉" == speaker:
+        if protagonist == speaker:
             # 检查是否是开头
             if current_dialogues:
                 angela_dialogues.append(dialogue)
-                # 到最后一行还是安吉拉，或者下一行已经不是安吉拉在说话
+                # 到最后一行还是主角，或者下一行已经不是主角在说话
                 if (
                     index == (len(conversations) - 1)
-                    or conversations["Character Name"][index + 1] != "安吉拉"
+                    or conversations["Character Name"][index + 1] != protagonist
                 ):
                     if len(current_dialogues)<=20:
                         results.append(
@@ -38,7 +42,7 @@ def process_single_conversations(csv_path) -> list:
                                         "input": "\n".join(current_dialogues),
                                         "output": "".join(
                                             angela_dialogues
-                                        ),  # 将安吉拉的连续对话作为一个输出
+                                        ),  # 将主角的连续对话作为一个输出
                                     }
                                 ]
                             }
@@ -56,7 +60,7 @@ if __name__ == "__main__":
     all_results = []
     DATA_DIR = r"raw_data\angela_included"
     for file_path in tqdm(os.listdir(DATA_DIR)):
-        results = process_single_conversations(os.path.join(DATA_DIR, file_path))
+        results = process_single_conversations(os.path.join(DATA_DIR, file_path),"安吉拉")
         all_results.extend(results)
 
     with open("dataset/angela_single.json", "w", encoding="utf-8") as f:
