@@ -16,9 +16,12 @@
 
 **🌠模型权重已上传ModelScope🌠**:https://www.modelscope.cn/models/usamimeri/InternLM2_Angela_7B
 
+**模型体验Demo已上线OpenXLab**:https://openxlab.org.cn/apps/detail/usamimeri/LibraryOfRunia-Angela-Chat
+
 
 ## News
 - [2024-2-23] 使用 xtuner,QLoRA微调了InternLM2-7B模型,模型权重上传OpenXLab、ModelScope
+- [2024-2-26] 模型体验Demo已上线OpenXLab
 
 ## 快速开始
 
