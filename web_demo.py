@@ -12,7 +12,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM  # isort: skip
 import random  # Import the random module
 from openxlab.model import download
 
-MODEL_DIR = download("usamimeri/InternLM2_Angela_7B")
+MODEL_DIR = download("usamimeri/InternLM2_Angela_7B",output="InternLM2_Angela_7B")
 
 logger = logging.get_logger(__name__)
 user_prompt = '<|im_start|>user\n{user}<|im_end|>\n'
@@ -168,10 +168,10 @@ def on_btn_click():
 
 @st.cache_resource
 def load_model():
-    model = (AutoModelForCausalLM.from_pretrained(MODEL_DIR,
+    model = (AutoModelForCausalLM.from_pretrained("InternLM2_Angela_7B",
                                                   low_cpu_mem_usage=True,
                                                   trust_remote_code=True).to(torch.bfloat16).cuda())
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR,
+    tokenizer = AutoTokenizer.from_pretrained("InternLM2_Angela_7B",
                                               trust_remote_code=True)
     return model, tokenizer
 
