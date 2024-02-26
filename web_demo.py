@@ -10,10 +10,9 @@ from transformers.generation.utils import (LogitsProcessorList,
 from transformers.utils import logging
 from transformers import AutoTokenizer, AutoModelForCausalLM  # isort: skip
 import random  # Import the random module
-from openxlab.model import download
+from modelscope import snapshot_download
 
-MODEL_DIR = download("usamimeri/InternLM2_Angela_7B",output="InternLM2_Angela_7B")
-
+MODEL_DIR = snapshot_download("usamimeri/InternLM2_Angela_7B",cache_dir="./InternLM2_Angela_7B")
 logger = logging.get_logger(__name__)
 user_prompt = '<|im_start|>user\n{user}<|im_end|>\n'
 robot_prompt = '<|im_start|>assistant\n{robot}<|im_end|>\n'
