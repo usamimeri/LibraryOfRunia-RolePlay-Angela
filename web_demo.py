@@ -167,10 +167,10 @@ def on_btn_click():
 
 @st.cache_resource
 def load_model():
-    model = (AutoModelForCausalLM.from_pretrained("./InternLM2_Angela_7B",
+    model = (AutoModelForCausalLM.from_pretrained(MODEL_DIR,
                                                   low_cpu_mem_usage=True,
                                                   trust_remote_code=True).to(torch.bfloat16).cuda())
-    tokenizer = AutoTokenizer.from_pretrained("./InternLM2_Angela_7B",
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR,
                                               trust_remote_code=True)
     return model, tokenizer
 
