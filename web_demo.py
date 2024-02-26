@@ -11,7 +11,7 @@ from transformers.utils import logging
 from transformers import AutoTokenizer, AutoModelForCausalLM  # isort: skip
 import random  # Import the random module
 
-MODEL_DIR='./InternLM2Angela-7B'
+MODEL_DIR='./InternLM2_Angela_7B'
 
 logger = logging.get_logger(__name__)
 user_prompt = '<|im_start|>user\n{user}<|im_end|>\n'
@@ -23,7 +23,7 @@ cur_query_prompt = '<|im_start|>user\n{user}<|im_end|>\n<|im_start|>assistant\n'
 class GenerationConfig:
     # this config is used for chat to provide more diversity
     max_length: int = 2048
-    top_p: float = 0.8
+    top_p: float = 0.75
     temperature: float = 0.8
     do_sample: bool = True
     repetition_penalty: float = 1.005
@@ -218,7 +218,7 @@ def main():
     model, tokenizer = load_model()
     print('load model end.')
 
-    user_avator = "images/user.png"
+    user_avator = "user"
     robot_avator = "images/robot.png"
 
     st.title('InternLM2-Angela-7B📲')
@@ -267,7 +267,7 @@ def main():
         st.session_state.messages.append({
             'role': 'user',
             'content': prompt,
-            'avatar': user_avator
+            'avatar': user_avator,
         })
 
         with st.chat_message('robot', avatar=robot_avator):

@@ -43,22 +43,28 @@ response, history = model.chat(tokenizer, '你好', meta_instruction=system_prom
 print(response)
 ```
 
-## 🪄效果展示
 
+## 🪄效果展示
+<details>
+  <summary style="font-weight: bold; font-size: larger;">展开查看示例对话记录</summary>
 <img src="https://github.com/usamimeri/Angela/blob/main/images/test_case1.png" width="70%">
 
 <img src="https://github.com/usamimeri/Angela/blob/main/images/test_case2.png" width="70%">
 
 <img src="https://github.com/usamimeri/Angela/blob/main/images/test_case3.png" width="70%">
 
+<img src="https://github.com/usamimeri/Angela/blob/main/images/test_case4.png" width="70%">
+
 > 请注意由于没有进行对齐和角色本身原因，安吉拉可能会有不友好的一面
 <img src="https://github.com/usamimeri/Angela/blob/main/images/bad_case.png" width="50%">
+
+</details>
 
 ## 📌项目计划
 
 - [x] 爬取133个场景共993段对话数据集
 - [x] QLoRA 微调InternLM-7B、InternLM2-7B模型
-- [x] 对Qwen1.5-7B进行微调
+- [x] 对Qwen1.5-7B进行微调->发现效果较差
 - [ ] 使用Langchain包装模型实现接口统一
 - [ ] 优化web_demo界面
 - [ ] 将模型在OpenXLab部署为应用
@@ -70,9 +76,11 @@ print(response)
 
 ---
 
+## 项目复现指南
+
 ### ✏️微调语料构建方案
 
-#### 方案一：纯单轮对话
+**方案一：纯单轮对话**
 
 - 目前使用较简单的单轮拆分，即寻找安吉拉两次对话之间的内容，拼接为一个大 Input。但若是安吉拉第一次出现，则将前面 n 条语料拼接
   例如：
@@ -120,6 +128,7 @@ Hod,啊，是安吉拉。你来这里是有什么事吗？
 - 一些对话截断导致信息量低
 - 容易出现前后不一致
 - 一些自我认知资料不足
+
 
 ### 参考资料
 
