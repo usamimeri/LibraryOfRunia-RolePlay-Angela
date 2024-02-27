@@ -1,7 +1,3 @@
-"""
-从废墟图书馆中文Wiki爬取所有情景对话
-"""
-
 from lxml import etree
 import requests
 import pandas as pd
@@ -9,15 +5,9 @@ import os
 from urllib.parse import urljoin
 from tqdm import tqdm
 
-
 def get_all_urls(save_path="all_urls.csv"):
-    if os.path.exists(save_path):
-        print("Loading Cached Urls")
-        urls_df = pd.read_csv(save_path)
-        return urls_df
-    response = requests.get(
-        "https://library-of-ruina.fandom.com/zh/wiki/%E5%89%A7%E6%83%85"
-    )
+    """获取所有剧情对话url,并保存本地"""
+    response = requests.get("https://library-of-ruina.fandom.com/zh/wiki/%E5%89%A7%E6%83%85")
     html_tree = etree.HTML(response.text)
     urls = html_tree.xpath("//td//a[@title]/@href")
     scene_names = html_tree.xpath("//td//a[@title]/@title")
@@ -31,31 +21,23 @@ def get_all_urls(save_path="all_urls.csv"):
 
 
 def extract_dialogues(url):
-    """Extract dialogues and character names from a given URL."""
+    """抽取给定url中的剧情对话"""
     try:
         response = requests.get(url)
-        # Ensure the request was successful
         response.raise_for_status()
     except requests.RequestException as e:
         print(f"Request error: {e} When scraping {url}")
         return pd.DataFrame()
     html_tree = etree.HTML(response.text)
     character_names = html_tree.xpath("//span[@style='font-size: 1.2em']/text()")
-    dialogues = html_tree.xpath(
-        "//div[contains(@style, 'margin-top:10px') and contains(@style, 'width:70%')]/text()"
-    )
-
-    # Check if lengths of extracted lists match
+    dialogues = html_tree.xpath("//div[contains(@style, 'margin-top:10px') and contains(@style, 'width:70%')]/text()")
+    # 保证对话数和角色出现次数一致
     if len(character_names) != len(dialogues):
         print("Warning: Mismatch between number of characters and dialogues.")
         return pd.DataFrame()
 
-    dialogue_df = pd.DataFrame(
-        {"Character Name": character_names, "Dialogue": dialogues}
-    )
-
+    dialogue_df = pd.DataFrame({"Character Name": character_names, "Dialogue": dialogues})
     return dialogue_df
-
 
 if __name__ == "__main__":
     SAVE_DIR = "dataset/raw_data"
