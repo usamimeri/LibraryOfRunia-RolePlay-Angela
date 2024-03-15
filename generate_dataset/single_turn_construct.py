@@ -58,15 +58,18 @@ def process_single_conversations(csv_path, protagonist) -> list:
 
 
 if __name__ == "__main__":
+    
+    CHARACTER_NAME="安吉拉"
+
     all_results = []
-    DATA_DIR = r"dataset/安吉拉"
+    DATA_DIR=os.path.join("dataset",CHARACTER_NAME)
     os.makedirs(DATA_DIR, exist_ok=True)
     for file_path in tqdm(os.listdir(DATA_DIR)):
         results = process_single_conversations(
-            os.path.join(DATA_DIR, file_path), "安吉拉"
+            os.path.join(DATA_DIR, file_path), CHARACTER_NAME
         )
         all_results.extend(results)
     print(f"成功构建{len(all_results)}条训练记录")
 
-    with open("dataset/angela_single.json", "w", encoding="utf-8") as f:
+    with open(f"dataset/{CHARACTER_NAME}_single.json", "w", encoding="utf-8") as f:
         json.dump(all_results, f, indent=2, ensure_ascii=False)

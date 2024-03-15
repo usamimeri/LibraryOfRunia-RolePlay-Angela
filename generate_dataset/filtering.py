@@ -33,4 +33,5 @@ def move_csv_files(data_dir, character_name):
 
 
 if __name__ == "__main__":
-    move_csv_files("dataset", "安吉拉")
+    CHARACTER_NAME="安吉拉"
+    move_csv_files("dataset", CHARACTER_NAME)
