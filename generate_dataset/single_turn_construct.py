@@ -53,18 +53,20 @@ def process_single_conversations(csv_path, protagonist) -> list:
                 continue
         else:
             current_dialogues.append(f"{speaker}:{dialogue}")
+    
     return results
 
 
 if __name__ == "__main__":
     all_results = []
-    DATA_DIR = r"raw_data\angela_included"
+    DATA_DIR = r"dataset/安吉拉"
     os.makedirs(DATA_DIR, exist_ok=True)
     for file_path in tqdm(os.listdir(DATA_DIR)):
         results = process_single_conversations(
             os.path.join(DATA_DIR, file_path), "安吉拉"
         )
         all_results.extend(results)
+    print(f"成功构建{len(all_results)}条训练记录")
 
     with open("dataset/angela_single.json", "w", encoding="utf-8") as f:
         json.dump(all_results, f, indent=2, ensure_ascii=False)

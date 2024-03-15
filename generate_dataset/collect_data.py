@@ -31,17 +31,24 @@ def extract_dialogues(url):
         print(f"Request error: {e} When scraping {url}")
         return pd.DataFrame()
     html_tree = etree.HTML(response.text)
-    character_names = html_tree.xpath("//span[@style='font-size: 1.2em']/text()")
-    dialogues = html_tree.xpath("//div[@class='story-mobile']/text()")
+    character_names = html_tree.xpath("//span[@style='font-size: 1.2em']")
+    # 避免一些旁白无文本导致的xpath无法匹配
+    character_names = [
+        node.text if node.text is not None else "" for node in character_names
+    ]
+    dialogues = html_tree.xpath("//div[@class='story-mobile']")
+    dialogues = [node.text if node.text is not None else "" for node in dialogues]
     # 保证对话数和角色出现次数一致
     if len(character_names) != len(dialogues):
-        print(f"警告：{url}中对话数为:{len(character_names)},而角色出现次数为{len(dialogues)}")
-        return pd.DataFrame()
+        print(
+            f"警告：{url}中对话数为:{len(character_names)},而角色出现次数为{len(dialogues)}"
+        )
+        return
 
     dialogue_df = pd.DataFrame(
         {"Character Name": character_names, "Dialogue": dialogues}
     )
-    return dialogue_df
+    dialogue_df.to_csv(os.path.join(SAVE_DIR, scene_name + ".csv"), index=None)
 
 
 if __name__ == "__main__":
@@ -52,5 +59,4 @@ if __name__ == "__main__":
         if os.path.exists(os.path.join(SAVE_DIR, scene_name)):
             continue
         else:
-            dialogue_df = extract_dialogues(url)
-            dialogue_df.to_csv(os.path.join(SAVE_DIR, scene_name + ".csv"), index=None)
+            extract_dialogues(url)
