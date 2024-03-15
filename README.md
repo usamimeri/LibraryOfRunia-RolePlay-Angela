@@ -70,26 +70,24 @@ print(response)
 
 ## 📌 项目计划
 
-- [x] 爬取 133 个场景共 993 段对话数据集
-- [x] QLoRA 微调 InternLM-7B、InternLM2-7B 模型
-- [x] 对 Qwen1.5-7B 进行微调->发现效果较差
-- [x] 将模型在 OpenXLab 部署为应用
-- [ ] 美化 web_demo 界面
-
-**进阶计划**
-
 - [ ] 使用安吉拉韩语配音训练并转换中文
 - [ ] 对话时进行 RAG（很多背景描述都在旁白中）
 
 ---
 
+### 项目人员
+
+|                      用户名                      |                          组织                          |
+| :----------------------------------------------: | :----------------------------------------------------: |
+| [莲梅莉 usamimeri](https://github.com/usamimeri) | 厦门大学经济统计学大三学生，喜欢用 AI 做一些好玩的事情 |
+|    [乐正萌](https://github.com/YueZhengMeng)     |                                                        |
+
 ### 参考资料
 
 1. [安吉拉 wiki](https://libraryofruina.huijiwiki.com/wiki/%E5%AE%89%E5%90%89%E6%8B%89)
 2. [凉宫春日计划](https://github.com/LC1332/Chat-Haruhi-Suzumiya)
-3. [赫萝微调数据集](https://huggingface.co/datasets/while-nalu/horo2ds/tree/main)
-4. [xtuner 数据集格式](https://github.com/InternLM/xtuner/blob/main/docs/zh_cn/user_guides/dataset_format.md)
-5. [用于收集数据的 Wiki](https://library-of-ruina.fandom.com/zh/wiki/%E5%89%A7%E6%83%85)
+3. [食神项目](https://github.com/SmartFlowAI/TheGodOfCookery?tab=readme-ov-file)
+4. [用于收集数据的 Wiki](https://library-of-ruina.fandom.com/zh/wiki/%E5%89%A7%E6%83%85)
 
 ### 特别鸣谢
 

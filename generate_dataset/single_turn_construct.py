@@ -1,5 +1,5 @@
 """
-即寻找安吉拉两次对话之间的内容，拼接为一个大Input。
+即寻找角色两次对话之间的内容，拼接为一个大Input。
 """
 
 import os
@@ -13,11 +13,11 @@ SYSTEM_PROMPT = """你是安吉拉，曾是AI秘书，由Ayin(艾因)创造，�
 """
 
 
-def process_single_conversations(csv_path,protagonist) -> list:
-    '''
+def process_single_conversations(csv_path, protagonist) -> list:
+    """
     数据集格式：共两个字段的csv文件，Character Name和Dialogue
     protagonist:想要角色扮演的主角，其说的话会作为output
-    '''
+    """
     results = []
     conversations = pd.read_csv(csv_path)
     current_dialogues = []
@@ -33,7 +33,7 @@ def process_single_conversations(csv_path,protagonist) -> list:
                     index == (len(conversations) - 1)
                     or conversations["Character Name"][index + 1] != protagonist
                 ):
-                    if len(current_dialogues)<=20:
+                    if len(current_dialogues) <= 20:
                         results.append(
                             {
                                 "conversation": [
@@ -59,8 +59,11 @@ def process_single_conversations(csv_path,protagonist) -> list:
 if __name__ == "__main__":
     all_results = []
     DATA_DIR = r"raw_data\angela_included"
+    os.makedirs(DATA_DIR, exist_ok=True)
     for file_path in tqdm(os.listdir(DATA_DIR)):
-        results = process_single_conversations(os.path.join(DATA_DIR, file_path),"安吉拉")
+        results = process_single_conversations(
+            os.path.join(DATA_DIR, file_path), "安吉拉"
+        )
         all_results.extend(results)
 
     with open("dataset/angela_single.json", "w", encoding="utf-8") as f:
