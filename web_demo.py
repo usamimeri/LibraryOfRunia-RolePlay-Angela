@@ -78,7 +78,7 @@ def main():
     model, tokenizer = load_model()
     print('load model end.')
 
-    user_avatar = "user.png"
+    user_avatar = "user"
     robot_avatar = "images/Hod_avatar.png"
 
     st.title('InternLM2-Angela-7B📲')
