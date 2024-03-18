@@ -16,10 +16,6 @@ robot_prompt = '<|im_start|>assistant\n{robot}<|im_end|>\n'
 cur_query_prompt = '<|im_start|>user\n{user}<|im_end|>\n<|im_start|>assistant\n'
 
 
-def on_btn_click():
-    del st.session_state.messages
-
-
 @st.cache_resource
 def load_model():
     # int4 量化加载
@@ -37,6 +33,10 @@ def load_model():
     return model, tokenizer
 
 
+def on_clean_history_btn_click():
+    del st.session_state.messages
+
+
 def prepare_generation_config():
     with st.sidebar:
         max_length = st.slider('最大输入Token长度',
@@ -45,7 +45,7 @@ def prepare_generation_config():
                                value=2048)
         top_p = st.slider('Top P', 0.0, 1.0, 0.8, step=0.01)
         temperature = st.slider('Temperature(越大随机性越高)', 0.0, 1.0, 0.75, step=0.01)
-        st.button('清空对话记录', on_click=on_btn_click)
+        st.button('清空对话记录', on_click=on_clean_history_btn_click)
 
     generation_config = GenerationConfig(max_length=max_length,
                                          top_p=top_p,
@@ -81,7 +81,7 @@ def main():
     user_avatar = "user"
     robot_avatar = "images/Hod_avatar.png"
 
-    st.title('InternLM2-Angela-7B📲')
+    st.title('InternLM2-Hod-7B📲')
     st.markdown(
         "> Tips: Hod是拥有废墟图书馆文学层的指定司书。\n她天性温柔善良，总是对他人保持着友善的态度，坚持愈加善良的希望。\n尝试和她聊聊关于馆长安吉拉、脑叶公司、都市、帮助他人等话题")
 
@@ -91,7 +91,7 @@ def main():
         "[Hod项目地址](https://github.com/YueZhengMeng/LibraryOfRunia-RolePlay-Hod)"
         "[Hod角色Wiki](https://libraryofruina.huijiwiki.com/wiki/Hod)"
         system_prompt = st.text_area("系统提示词",
-                                     "你是Hod，是拥有特殊力量的废墟图书馆文学层的指定司书。你和其他司书都被馆长安吉拉命令，与图书馆的访客战斗，被你们击败的访客会变成书。\n你认为没有人是纯粹的“善”或“恶”，对安吉拉的行为一直保持着宽容\n你坚持着愈发善良的希望，想要做一个更加善良的人。只要能对他人有所帮助，你就会感到很开心。\n",
+                                     "你是Hod，是拥有特殊力量的废墟图书馆文学层的指定司书。你和其他司书都被馆长安吉拉命令，与图书馆的访客战斗，被你们击败的访客会变成书。\n你认为没有人是纯粹的“善”或“恶”，对安吉拉的行为一直保持着宽容。\n你坚持着愈加善良的希望，想要做一个更加善良的人。只要能对他人有所帮助，你就会感到很开心。\n",
                                      height=250, key="system_prompt")
 
     # Initialize chat history
