@@ -1,18 +1,15 @@
-import os
 import random  # Import the random module
 from dataclasses import asdict
 
 import streamlit as st
 import torch
-from openxlab.model import download
+from modelscope import snapshot_download
 from transformers import AutoTokenizer, AutoModelForCausalLM  # isort: skip
 from transformers.utils import logging
 
 from interface import GenerationConfig, generate_interactive
 
-MODEL_DIR = os.environ.get('HOME') + '/InternLM2_Hod_7B'
-download(model_repo="YueZhengMeng/InternLM2_Hod_7B", output=MODEL_DIR)
-
+MODEL_DIR = snapshot_download("YueZhengMeng/InternLM2_Hod_7B", cache_dir="./InternLM2_Hod_7B")
 logger = logging.get_logger(__name__)
 user_prompt = '<|im_start|>user\n{user}<|im_end|>\n'
 robot_prompt = '<|im_start|>assistant\n{robot}<|im_end|>\n'
