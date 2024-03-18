@@ -9,8 +9,8 @@ from transformers.utils import logging
 
 from interface import GenerationConfig, generate_interactive
 
-MODEL_DIR = "./InternLM2_Hod_7B"
-download(model_repo="YueZhengMeng/InternLM2_Hod_7B", output=MODEL_DIR)
+MODEL_DIR = "InternLM2_Hod_7B"
+download(model_repo="YueZhengMeng/InternLM2_Hod_7B", output="./InternLM2_Hod_7B")
 
 model_path = "neko_assistant_awq_int4"
 logger = logging.get_logger(__name__)
