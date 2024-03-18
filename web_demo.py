@@ -3,13 +3,16 @@ from dataclasses import asdict
 
 import streamlit as st
 import torch
-from modelscope import snapshot_download
+from openxlab.model import download
 from transformers import AutoTokenizer, AutoModelForCausalLM  # isort: skip
 from transformers.utils import logging
 
 from interface import GenerationConfig, generate_interactive
 
-MODEL_DIR = snapshot_download("YueZhengMeng/InternLM2_Hod_7B", cache_dir="./InternLM2_Hod_7B")
+MODEL_DIR = "./InternLM2_Hod_7B"
+download(model_repo="YueZhengMeng/InternLM2_Hod_7B", output=MODEL_DIR)
+
+model_path = "neko_assistant_awq_int4"
 logger = logging.get_logger(__name__)
 user_prompt = '<|im_start|>user\n{user}<|im_end|>\n'
 robot_prompt = '<|im_start|>assistant\n{robot}<|im_end|>\n'
