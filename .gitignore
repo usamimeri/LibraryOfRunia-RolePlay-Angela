@@ -10,3 +10,4 @@ server_user_id.txt
 .idea
 .vscode
 __pycache__
+.log

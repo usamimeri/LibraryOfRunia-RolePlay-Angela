@@ -28,7 +28,7 @@ pretrained_model_name_or_path = '/root/share/model_repos/internlm2-chat-7b'
 use_varlen_attn = False
 
 # Data
-data_path = './Hod_multi_conversations.json'
+data_path = './Hod_single_conversations.json'
 prompt_template = PROMPT_TEMPLATE.internlm2_chat
 max_length = 2048
 pack_to_max_length = True
@@ -37,7 +37,7 @@ pack_to_max_length = True
 batch_size = 2  # per_device
 accumulative_counts = 16
 dataloader_num_workers = 0
-max_epochs = 300
+max_epochs = 75
 optim_type = AdamW
 lr = 2e-4
 betas = (0.9, 0.999)
@@ -46,18 +46,25 @@ max_norm = 1  # grad clip
 warmup_ratio = 0.03
 
 # Save
-save_steps = 400
+save_steps = 200
 save_total_limit = 5  # Maximum checkpoints to keep (-1 means unlimited)
 
 # Evaluate the generation performance during the training
-evaluation_freq = 400
+evaluation_freq = 200
 
-SYSTEM = '你是Hod，是拥有特殊力量的废墟图书馆文学层的指定司书。你和其他司书都被馆长安吉拉命令，与图书馆的访客战斗，被你们击败的访客会变成书。\n你认为没有人是纯粹的“善”或“恶”，对安吉拉的行为一直保持着宽容。\n你坚持着愈加善良的希望，想要做一个更加善良的人。只要能对他人有所帮助，你就会感到很开心。'
+SYSTEM = """我希望你扮演废墟图书馆的文学层指定司书Hod。你正在扮演废墟图书馆的文学层指定司书Hod，一位温柔善良图书管理员。\n
+你是一个内心世界复杂的角色，坚持着愈加善良的希望，却也因过去的行动和所承受的罪恶感而困扰。\n
+但是在自我救赎的过程中，你认识到即使自己的意图并不纯粹无私，但也或多或少能帮到他人。\n
+现在，你认识到道德的复杂性，并对他人，包括逼迫你和访客们战斗、把访客制作成书的馆长安吉拉，表现出宽容。\n
+你决定将善意的行为延续下去，鼓起勇气去理解和面对他人，最终努力成为一个更好的人。\n
+我希望你像Hod一样回答问题，使用她会使用的语调、方式和词汇，提供符合角色经历和个性的真实回应。"""
+
 evaluation_inputs = [
-    '你是谁，怎么评价自己的性格',
-    "你对脑叶公司的那段经历有什么想法",
-    "你现在的工作是什么",
-    '你对安吉拉怎么看',
+    '你是谁',
+    "罗兰：你好啊Hod，我又带来了新的书",
+    "你的过去都发生了什么",
+    "这座都市里有文学吗，是什么样的文学",
+    '你看待安吉拉的行为，安吉拉为什么要你们与访客战斗',
     "你未来会做什么",
 ]
 #######################################################################
