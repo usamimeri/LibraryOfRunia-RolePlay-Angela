@@ -7,3 +7,7 @@ quick_start
 InternLM2_Angela_7B
 quick_start.py
 server_user_id.txt
+.idea
+.vscode
+__pycache__
+.log
