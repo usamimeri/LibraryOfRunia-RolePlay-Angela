@@ -20,12 +20,6 @@
 
 **🌠 项目复现指南 🌠**:https://zhuanlan.zhihu.com/p/684183466
 
-## News
-
-- [2024-2-23] 使用 xtuner,QLoRA 微调了 InternLM2-7B 模型,模型权重上传 OpenXLab、ModelScope
-- [2024-2-26] 模型体验 Demo 已上线 OpenXLab
-- [2024-2-27] 项目 6500 字复现指南上传知乎
-
 ## 快速开始
 
 ```python
